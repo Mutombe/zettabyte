@@ -1,18 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
 
-const PortfolioCard = ({ title, url, image }) => {
-    return (
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <Link to={url}>
-          <img src={image} alt={title} className="w-full h-48 object-cover" />
-          <div className="p-4">
-            <h3 className="text-lg font-bold">{title}</h3>
+const PortfolioCard = ({ title, url, image, index }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="group relative overflow-hidden rounded-2xl"
+    >
+      <Link to={url}>
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <img src={image} alt={title} className="w-full h-64 object-cover" />
+          <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+            <h3 className="text-lg font-bold text-white">{title}</h3>
+            <span className="text-blue-200 text-sm">View Project →</span>
           </div>
-        </Link>
-      </div>
-    );
-  };
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
 
 const PortfolioSection = () => {
   const projects = [
@@ -32,14 +44,14 @@ const PortfolioSection = () => {
       image: '/mini1.png',
     },
     {
-        title: 'Content Creation Association of Zimbabwe',  
-        url: '/https://avccmf-frontend.onrender.com/',
-        image: '/COCAZ.png',
+      title: 'Content Creation Association of Zimbabwe',  
+      url: '/https://avccmf-frontend.onrender.com/',
+      image: '/COCAZ.png',
     },
     {
-        title: 'Zettabyte Website',
-        url: '/https://avccmf-frontend.onrender.com/',
-        image: '/zetta1.png',
+      title: 'Zettabyte Website',
+      url: '/https://avccmf-frontend.onrender.com/',
+      image: '/zetta1.png',
     },
     {
       title: 'Mt Zion College Website',
@@ -49,17 +61,20 @@ const PortfolioSection = () => {
   ];
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-8 text-center">Our Portfolio</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="py-24 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
+        >
+          Our Portfolio
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <PortfolioCard
-              key={index}
-              title={project.title}
-              url={project.url}
-              image={project.image}
-            />
+            <PortfolioCard key={index} {...project} index={index} />
           ))}
         </div>
       </div>
@@ -120,9 +135,13 @@ export const PortfolioPage = () => {
     ];
   
     return (
-      <div className="bg-gray-50">
+      <div className="bg-gray-50 mt-10">
         {/* Portfolio Hero */}
-        <section className="bg-blue-500 text-white py-20">
+        <section className="bg-blue-500 text-white py-20" style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+            backgroundSize: "30px 30px",
+          }}>
           <div className="container mx-auto px-6">
             <h1 className="text-4xl font-bold mb-6">Our Portfolio</h1>
             <p className="text-xl">Showcasing our successful projects and implementations</p>
