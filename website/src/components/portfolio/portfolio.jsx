@@ -102,8 +102,8 @@ export const PortfolioPage = () => {
             completion: "2024"
           },
       {
-        title: "Ministry of Environment and Wildlife",
-        url: "/event-ticketing",
+        title: "Ministry of Environment and Wildlife & ACMF Portal",
+        url: "/https://avccmf-frontend.onrender.com/",
         image: "/mini2.png",
         description: "Event management and ticketing system",
         technologies: ["React", "Express", "MySQL"],
@@ -113,7 +113,7 @@ export const PortfolioPage = () => {
         title: "Zettabyte Website",
         url: "https://mentorcenter.co.zw",
         image: "/zetta1.png",
-        description: "Professional mentorship platform",
+        description: "A comprehensive forum platform for a Software Company",
         technologies: ["Next.js", "Node.js", "MongoDB"],
         completion: "2024"
       }
