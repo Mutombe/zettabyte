@@ -42,7 +42,7 @@ const PortfolioSection = () => {
         image: '/zetta1.png',
     },
     {
-      title: 'MT Zion College Website',
+      title: 'Mt Zion College Website',
       url: 'https://mentorcenter.co.zw',
       image: '/mtzion.png',
     },
