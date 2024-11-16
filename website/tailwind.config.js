@@ -10,6 +10,10 @@ export default {
       fontFamily: {
         roboto: ['Geist', 'sans-serif'],
       },
+      screens: {
+        'custom-min': '1024px',
+        'custom-max': '1277px',
+      },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
