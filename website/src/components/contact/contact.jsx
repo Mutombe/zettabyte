@@ -375,4 +375,4 @@ export const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default ContactSection;
