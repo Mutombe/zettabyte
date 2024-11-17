@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowLeft, ArrowRight, ExternalLink, Code, Calendar, Building } from 'lucide-react';
+import { X, ArrowLeft, ArrowRight, ExternalLink, Code, Calendar, Building, Award, Star, Users } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Link } from 'react-router-dom';
 
-
-const ProjectModal2 = ({ project, isOpen, onClose }) => {
+const ProjectModal1 = ({ project, isOpen, onClose }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white border-none">
@@ -21,7 +20,7 @@ const ProjectModal2 = ({ project, isOpen, onClose }) => {
             <img 
               src={project.image} 
               alt={project.title} 
-              className="w-full h-[400px] object-cover rounded-xl"
+              className="w-full h-[400px] object-cover rounded-xl shadow-2xl"
             />
 
             <div className="space-y-4">
@@ -49,6 +48,18 @@ const ProjectModal2 = ({ project, isOpen, onClose }) => {
 };
 
 const PortfolioCard = ({ title, url, image, index, onClick }) => {
+  const getTechBadges = (projectTitle) => {
+    const badges = {
+      'ACMF Website': ['React', 'Node.js', 'MongoDB'],
+      'Silver Carbon Website': ['Next.js', 'Prisma', 'PostgreSQL'],
+      'Zettabyte Website': ['Vue.js', 'Express', 'MySQL'],
+      'Ministry of Environment and Wildlife & ACMF Portal': ['React', 'Django', 'PostgreSQL'],
+      'Content Creation Association of Zimbabwe': ['Next.js', 'Supabase', 'Tailwind'],
+      'Mt Zion College Website': ['React', 'Firebase', 'Material-UI']
+    };
+    return badges[projectTitle] || ['React', 'Node.js', 'MongoDB'];
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -56,24 +67,83 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="group relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20"
+      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/10 to-blue-800/10 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       <div 
-        className="cursor-pointer"
+        className="cursor-pointer relative overflow-hidden"
         onClick={onClick}
       >
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <img 
-            src={image} 
-            alt={title} 
-            className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500" 
-          />
-          <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-            <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
-            <div className="flex items-center text-blue-200 text-sm">
-              <span className="mr-2">View Details</span>
-              <ArrowRight className="w-4 h-4" />
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-800/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+        
+        <img 
+          src={image} 
+          alt={title} 
+          className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out" 
+        />
+
+        {/* Enhanced content container */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="relative z-10">
+            <div className="bg-gradient-to-r from-blue-900/95 to-blue-800/95 p-4 rounded-xl backdrop-blur-md border border-white/10 shadow-lg">
+              
+              {/* Top row: Logo and rating */}
+              <div className="flex items-center justify-between mb-3">
+                {/* Company logo placeholder */}
+                <div className="bg-white/10 rounded-lg p-2 w-10 h-10 flex items-center justify-center">
+                  <Award className="w-6 h-6 text-blue-300" />
+                </div>
+                
+                {/* Rating */}
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                  <span className="text-yellow-400 text-sm font-medium">4.9</span>
+                </div>
+              </div>
+
+              {/* Middle row: Title and completion */}
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-white mb-1 tracking-wide">
+                  {title}
+                </h3>
+                <div className="flex items-center gap-2 text-blue-200 text-sm">
+                  <Calendar className="w-4 h-4" />
+                  <span>2024</span>
+                  <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
+                  <Users className="w-4 h-4" />
+                  <span>Team of 4</span>
+                </div>
+              </div>
+
+              {/* Tech stack badges */}
+              <div className="flex flex-wrap gap-2 mb-3">
+                {getTechBadges(title).map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 rounded-md text-xs font-medium bg-blue-800/50 text-blue-200 border border-blue-700/50"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Bottom row: View details and metrics */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center text-blue-200 text-sm group-hover:text-blue-300 transition-colors duration-300">
+                  <span className="mr-2 font-medium">View Details</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+                
+                {/* Project metrics */}
+                <div className="flex items-center gap-3 text-xs text-blue-300">
+                  <div className="flex items-center gap-1">
+                    <Code className="w-3 h-3" />
+                    <span>15 Pages</span>
+                  </div>
+                  <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
+                  <span className="text-blue-400 font-medium">Live</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -81,6 +151,7 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
     </motion.div>
   );
 };
+
 
 const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -126,7 +197,6 @@ const PortfolioSection = () => {
 
   return (
     <section className="py-24 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 relative overflow-hidden">
-      {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
         <div
@@ -168,7 +238,7 @@ const PortfolioSection = () => {
 
       <AnimatePresence>
         {selectedProject && (
-          <ProjectModal2
+          <ProjectModal1
             project={selectedProject}
             isOpen={!!selectedProject}
             onClose={() => setSelectedProject(null)}
@@ -178,7 +248,6 @@ const PortfolioSection = () => {
     </section>
   );
 };
-
 
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
@@ -376,7 +445,14 @@ export const PortfolioPage = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Portfolio</h1>
+                              <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
+        >
+          Our Track Record
+        </motion.h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
               Explore our successful projects and see how we've helped businesses transform their digital presence.
             </p>
