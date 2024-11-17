@@ -252,21 +252,23 @@ const PortfolioSection = () => {
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [project.image, ...project.additionalImages || []];
+  const images = [project.image, ...(project.additionalImages || [])];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white border-none">
-        <div className="relative p-6">
+      <DialogContent className="max-w-4xl max-h-[90vh] bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white border-none overflow-hidden flex flex-col">
+        <div className="p-6 flex-1 overflow-y-auto">
+          {/* Close button - Fixed position */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 p-1 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            className="fixed right-4 top-4 z-50 p-1 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="relative group">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6">
+            {/* Image Section */}
+            <div className="relative group min-h-[300px]">
               <div className="relative overflow-hidden rounded-xl">
                 <img
                   src={images[currentImageIndex]}
@@ -275,20 +277,20 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 />
                 
                 {images.length > 1 && (
-                  <>
+                  <div className="absolute inset-0 flex items-center justify-between px-2">
                     <button
                       onClick={() => setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                      className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
                     >
                       <ArrowLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+                      className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
                     >
                       <ArrowRight className="w-5 h-5" />
                     </button>
-                  </>
+                  </div>
                 )}
               </div>
               
@@ -307,6 +309,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               )}
             </div>
 
+            {/* Content Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <img
@@ -340,14 +343,16 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 </div>
               </div>
 
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-6 py-3 rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-colors"
-              >
-                Visit Project <ExternalLink className="w-4 h-4" />
-              </a>
+              <div className="pt-4">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-colors"
+                >
+                  Visit Project <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -356,7 +361,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
   );
 };
 
-// Enhanced PortfolioPage Component
+
 export const PortfolioPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   

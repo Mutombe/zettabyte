@@ -74,11 +74,15 @@ const ImageCollage = () => {
       src: "/consult.png",
       alt: "Software Development",
       className: "rounded-2xl object-cover w-full h-full",
+      desktopPosition: { top: '5%', left: '0%' },
+      rotation: -5
     },
     {
       src: "/mobile.png",
       alt: "Mobile Development",
-      className: "rounded-2xl shadow-2xl object-cover w-full h-full",
+      className: "rounded-2xl object-cover w-full h-full",
+      desktopPosition: { top: '15%', left: '25%' },
+      rotation: 5
     },
   ];
 
@@ -86,14 +90,11 @@ const ImageCollage = () => {
     <motion.div
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative w-full md:h-[600px] h-auto px-4 md:px-0"
-      style={{ perspective: "1000px" }}
+      className="relative w-full h-[400px] md:h-[600px] px-4 md:px-0"
+      style={{ perspective: '1000px' }}
     >
-      {/* Background effects - hidden on mobile */}
-      <div className="hidden md:block absolute inset-0  rounded-3xl animate-pulse" />
-
-      {/* Mobile-first container */}
-      <div className="flex flex-col md:block space-y-6 md:space-y-0">
+      {/* Container for absolute positioning on desktop */}
+      <div className="relative h-full w-full">
         {images.map((image, index) => (
           <motion.div
             key={index}
@@ -101,10 +102,9 @@ const ImageCollage = () => {
             animate={{
               opacity: 1,
               scale: 1,
-              // Only apply 3D effects on desktop
               ...(!window.matchMedia("(max-width: 768px)").matches && {
-                rotateY: mousePosition.x * 20,
-                rotateX: -mousePosition.y * 20,
+                rotateY: mousePosition.x * 15,
+                rotateX: -mousePosition.y * 15,
               }),
             }}
             transition={{
@@ -113,68 +113,63 @@ const ImageCollage = () => {
               type: "spring",
               stiffness: 100,
             }}
+            className="group mb-6 md:mb-0 md:absolute"
             style={{
-              position: "relative", // Mobile: relative positioning
-              // Desktop: absolute positioning
-              "@media (min-width: 768px)": {
-                position: "absolute",
-                top: `${index * 20}%`,
-                left: `${index * 35}%`,
-                zIndex: images.length - index,
-              },
+              ...image.desktopPosition,
+              zIndex: images.length - index,
+              width: 'min(100%, 450px)',
             }}
-            className="group"
           >
             <div className="relative">
-              {/* Gradient border effect */}
-              <motion.div
-                className="absolute -inset-0.5  
-                           rounded-2xl blur opacity-50 group-hover:opacity-75 transition duration-300"
+              {/* Enhanced shadow effect */}
+              <div 
+                className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition duration-300"
+                style={{
+                  transform: `rotate(${image.rotation}deg)`,
+                }}
               />
 
-              {/* Image container */}
+              {/* Main image container */}
               <motion.div
                 whileHover={{
                   scale: 1.02,
-                  rotateZ: index % 2 === 0 ? 2 : -2,
+                  rotate: image.rotation + (index % 2 === 0 ? 2 : -2),
                 }}
                 transition={{ duration: 0.3 }}
-                className="relative"
+                className="relative bg-blue-900/20 rounded-2xl overflow-hidden"
+                style={{
+                  transform: `rotate(${image.rotation}deg)`,
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 255, 0.2)',
+                }}
               >
                 <img
                   src={image.src}
                   alt={image.alt}
                   className={`
-                    w-full md:w-[400px] 
-                    h-[200px] md:h-[300px] 
+                    w-full
+                    h-[250px] md:h-[350px] 
                     ${image.className}
                   `}
-                  style={{
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-                    transform: `rotate(${index % 2 === 0 ? -3 : 3}deg)`,
-                  }}
                 />
 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-transparent" />
-
-                {/* Reflection effect - hidden on mobile */}
-                <div className="hidden md:block absolute inset-0 rounded-2xl bg-gradient-to-b from-transparent via-white/5 to-transparent opacity-50" />
+                {/* Enhanced overlay effects */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-blue-900/20" />
               </motion.div>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Interactive floating elements - hidden on mobile */}
+      {/* Interactive background effect */}
       <motion.div
         className="hidden md:block absolute inset-0"
         animate={{
           background: [
-            "radial-gradient(circle at 50% 50%, rgba(120,119,198,0.1) 0%, transparent 50%)",
-            "radial-gradient(circle at 60% 40%, rgba(120,119,198,0.1) 0%, transparent 50%)",
-            "radial-gradient(circle at 40% 60%, rgba(120,119,198,0.1) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 50%, rgba(120,119,198,0.1) 0%, transparent 50%)",
+            "radial-gradient(circle at 50% 50%, rgba(120,119,198,0.15) 0%, transparent 60%)",
+            "radial-gradient(circle at 60% 40%, rgba(120,119,198,0.15) 0%, transparent 60%)",
+            "radial-gradient(circle at 40% 60%, rgba(120,119,198,0.15) 0%, transparent 60%)",
+            "radial-gradient(circle at 50% 50%, rgba(120,119,198,0.15) 0%, transparent 60%)",
           ],
         }}
         transition={{
@@ -186,6 +181,7 @@ const ImageCollage = () => {
     </motion.div>
   );
 };
+
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -293,6 +289,9 @@ const HeroSection = () => {
 
           <div className="w-full mt-8 lg:mt-0">
             <ImageCollage />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
 
