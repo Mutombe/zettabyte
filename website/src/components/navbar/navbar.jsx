@@ -15,7 +15,7 @@ const Logo = () => {
           className="relative h-10 w-full bg-white rounded-lg transform group-hover:scale-105 transition duration-200"
         />
       </div>
-      <span className="text-xl font-bold hidden sm:block bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+      <span className="text-xl font-bold sm:block bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
         Zettabyte
       </span>
     </Link>
