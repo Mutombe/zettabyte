@@ -122,7 +122,7 @@ const Navbar = () => {
             className="md:hidden relative group p-2 rounded-lg transition-colors duration-300
                      hover:bg-white/10"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={24} className='text-white'/> : <Menu size={24} className='text-white'/>}
             <div className="absolute inset-0 rounded-lg bg-white opacity-0 group-hover:opacity-10 
                           blur-sm transition-opacity duration-300" />
           </motion.button>
