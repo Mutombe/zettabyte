@@ -1,6 +1,7 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react"
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";

@@ -69,7 +69,7 @@ const Footer = () => {
               Quick Links
             </h3>
             <div className="flex flex-col space-y-2">
-              {['Services', 'Portfolio', 'About Us', 'Contact'].map((link, index) => (
+              {['Services', 'Portfolio', 'About', 'Contact'].map((link, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ x: 4 }}
