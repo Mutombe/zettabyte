@@ -57,7 +57,7 @@ const NavLink = ({ to, children, onClick }) => {
 const DownloadButton = () => {
   return (
     <a
-      href="/z-b-profile.pdf"
+      href="/zettabyte-business-profile.pdf"
       download
       className="relative group flex items-center space-x-2 bg-gradient-to-r from-white to-blue-100 
                  text-blue-600 px-4 py-2 rounded-lg transition-all duration-300 
