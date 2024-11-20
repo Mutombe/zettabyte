@@ -158,6 +158,12 @@ const PortfolioSection = () => {
   
   const projects = [
     {
+      title: 'Garget Shop Web Application',
+      url: 'https://thegadgetshopsa.co.za/',
+      image: '/gad.png',
+      completion: '2023'
+    },
+    {
       title: 'ACMF Website',
       url: 'https://acmforum.org',
       image: '/acmf.png',
@@ -366,6 +372,16 @@ export const PortfolioPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   
   const projects = [
+    {
+      title: 'Garget Shop Web Application',
+      url: 'https://thegadgetshopsa.co.za/',
+      image: '/gad.png',
+      logo: "/gad-logo.png", 
+      completion: '2023',
+      description: "An E-Commerce website for Gadgets",
+      technologies: ["React", "Django", "PostgreSQL", "AWS"],
+      additionalImages: ["/gad.png", "/gad.png"]
+    },
     {
       title: "ACMF Website",
       url: "https://acmforum.org",
