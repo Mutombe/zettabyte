@@ -58,9 +58,9 @@ const AboutSection = () => {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full blur-lg opacity-75 animate-pulse" />
               <img
-                src="/simba.jpg"
+                src="/tech2.jpg"
                 alt="Zettabyte Team"
-                className="rounded-full w-64 h-64 object-cover relative z-10 border-4 border-white/20"
+                className="rounded-lg w-full h-64 object-cover relative z-10 border-0 border-white/20"
               />
             </div>
           </motion.div>

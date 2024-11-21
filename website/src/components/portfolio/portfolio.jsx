@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowLeft, ArrowRight, ExternalLink, Code, Calendar, Building, Award, Star, Users } from 'lucide-react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  ArrowLeft,
+  ArrowRight,
+  ExternalLink,
+  Code,
+  Calendar,
+  Building,
+  Award,
+  Star,
+  Users,
+} from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 const ProjectModal1 = ({ project, isOpen, onClose }) => {
   return (
@@ -17,18 +28,18 @@ const ProjectModal1 = ({ project, isOpen, onClose }) => {
           </button>
 
           <div className="space-y-6">
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <img
+              src={project.image}
+              alt={project.title}
               className="w-full h-[400px] object-cover rounded-xl shadow-2xl"
             />
 
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">{project.title}</h2>
-              
+
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-blue-300" />
-                <span>Completed: {project.completion || '2024'}</span>
+                <span>Completed: {project.completion || "2024"}</span>
               </div>
 
               <a
@@ -50,14 +61,23 @@ const ProjectModal1 = ({ project, isOpen, onClose }) => {
 const PortfolioCard = ({ title, url, image, index, onClick }) => {
   const getTechBadges = (projectTitle) => {
     const badges = {
-      'ACMF Website': ['React', 'Node.js', 'MongoDB'],
-      'Silver Carbon Website': ['Next.js', 'Prisma', 'PostgreSQL'],
-      'Zettabyte Website': ['Vue.js', 'Express', 'MySQL'],
-      'Ministry of Environment and Wildlife & ACMF Portal': ['React', 'Django', 'PostgreSQL'],
-      'Content Creation Association of Zimbabwe': ['Next.js', 'Supabase', 'Tailwind'],
-      'Mt Zion College Website': ['React', 'Firebase', 'Material-UI']
+      "Garget Shop Web Application": ["React", "Django", "PostgreSQ"],
+      "ACMF Website": ["React", "Node.js", "MongoDB"],
+      "Silver Carbon Website": ["Next.js", "Prisma", "PostgreSQL"],
+      "Zettabyte Website": ["Vue.js", "Express", "MySQL"],
+      "Ministry of Environment and Wildlife & ACMF Portal": [
+        "React",
+        "Django",
+        "PostgreSQL",
+      ],
+      "Content Creation Association of Zimbabwe": [
+        "Next.js",
+        "Supabase",
+        "Tailwind",
+      ],
+      "Mt Zion College Website": ["React", "Firebase", "Material-UI"],
     };
-    return badges[projectTitle] || ['React', 'Node.js', 'MongoDB'];
+    return badges[projectTitle] || ["React", "Node.js", "MongoDB"];
   };
 
   return (
@@ -69,34 +89,35 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
       whileHover={{ y: -5, scale: 1.02 }}
       className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/10 to-blue-800/10 backdrop-blur-sm border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300"
     >
-      <div 
+      <div
         className="cursor-pointer relative overflow-hidden"
         onClick={onClick}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-800/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
-        
-        <img 
-          src={image} 
-          alt={title} 
-          className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out" 
+
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
         />
 
         {/* Enhanced content container */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <div className="relative z-10">
             <div className="bg-gradient-to-r from-blue-900/95 to-blue-800/95 p-4 rounded-xl backdrop-blur-md border border-white/10 shadow-lg">
-              
               {/* Top row: Logo and rating */}
               <div className="flex items-center justify-between mb-3">
                 {/* Company logo placeholder */}
                 <div className="bg-white/10 rounded-lg p-2 w-10 h-10 flex items-center justify-center">
                   <Award className="w-6 h-6 text-blue-300" />
                 </div>
-                
+
                 {/* Rating */}
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  <span className="text-yellow-400 text-sm font-medium">4.9</span>
+                  <span className="text-yellow-400 text-sm font-medium">
+                    4.9
+                  </span>
                 </div>
               </div>
 
@@ -132,7 +153,7 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
                   <span className="mr-2 font-medium">View Details</span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
-                
+
                 {/* Project metrics */}
                 <div className="flex items-center gap-3 text-xs text-blue-300">
                   <div className="flex items-center gap-1">
@@ -143,7 +164,6 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
                   <span className="text-blue-400 font-medium">Live</span>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -152,52 +172,51 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
   );
 };
 
-
 const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  
+
   const projects = [
     {
-      title: 'Garget Shop Web Application',
-      url: 'https://thegadgetshopsa.co.za/',
-      image: '/gad.png',
-      completion: '2023'
+      title: "Garget Shop Web Application",
+      url: "https://thegadgetshopsa.co.za/",
+      image: "/gad.png",
+      completion: "2023",
     },
     {
-      title: 'ACMF Website',
-      url: 'https://acmforum.org',
-      image: '/acmf.png',
-      completion: '2023'
+      title: "ACMF Website",
+      url: "https://acmforum.org",
+      image: "/acmf.png",
+      completion: "2023",
     },
     {
-      title: 'Silver Carbon Website',
-      url: 'https://silver-carbon.co.zw',
-      image: '/silver1.png',
-      completion: '2023'
+      title: "Silver Carbon Website",
+      url: "https://silver-carbon.co.zw",
+      image: "/silver1.png",
+      completion: "2023",
     },
     {
-      title: 'Ministry of Environment and Wildlife & ACMF Portal',
-      url: 'https://avccmf-frontend.onrender.com/',
-      image: '/mini1.png',
-      completion: '2024'
+      title: "Ministry of Environment and Wildlife & ACMF Portal",
+      url: "https://avccmf-frontend.onrender.com/",
+      image: "/mini1.png",
+      completion: "2024",
     },
     {
-      title: 'Content Creation Association of Zimbabwe',  
-      url: 'https://cocaz.onrender.com/',
-      image: '/COCAZ.png',
-      completion: '2024'
+      title: "Content Creation Association of Zimbabwe",
+      url: "https://cocaz.onrender.com/",
+      image: "/COCAZ.png",
+      completion: "2024",
     },
     {
-      title: 'Zettabyte Website',
-      url: 'https://zettabyte.co.zw/',
-      image: '/zetta1.png',
-      completion: '2024'
+      title: "Zettabyte Website",
+      url: "https://zettabyte.co.zw/",
+      image: "/zetta1.png",
+      completion: "2024",
     },
     {
-      title: 'Mt Zion College Website',
-      url: 'https://mtzioncollege-1.onrender.com',
-      image: '/mtzion.png',
-      completion: '2024'
+      title: "Mt Zion College Website",
+      url: "https://mtzioncollege-1.onrender.com",
+      image: "/mtzion.png",
+      completion: "2024",
     },
   ];
 
@@ -226,15 +245,16 @@ const PortfolioSection = () => {
             Our Portfolio
           </h2>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Explore our successful projects and see how we've helped businesses transform their digital presence.
+            Explore our successful projects and see how we've helped businesses
+            transform their digital presence.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <PortfolioCard 
-              key={index} 
-              {...project} 
+            <PortfolioCard
+              key={index}
+              {...project}
               index={index}
               onClick={() => setSelectedProject(project)}
             />
@@ -254,7 +274,6 @@ const PortfolioSection = () => {
     </section>
   );
 };
-
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -281,17 +300,25 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   alt={project.title}
                   className="w-full h-[300px] object-cover rounded-xl"
                 />
-                
+
                 {images.length > 1 && (
                   <div className="absolute inset-0 flex items-center justify-between px-2">
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+                      onClick={() =>
+                        setCurrentImageIndex((prev) =>
+                          prev === 0 ? images.length - 1 : prev - 1
+                        )
+                      }
                       className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
                     >
                       <ArrowLeft className="w-5 h-5" />
                     </button>
                     <button
-                      onClick={() => setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
+                      onClick={() =>
+                        setCurrentImageIndex((prev) =>
+                          prev === images.length - 1 ? 0 : prev + 1
+                        )
+                      }
                       className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
                     >
                       <ArrowRight className="w-5 h-5" />
@@ -299,7 +326,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   </div>
                 )}
               </div>
-              
+
               {images.length > 1 && (
                 <div className="flex justify-center mt-4 gap-2">
                   {images.map((_, idx) => (
@@ -307,7 +334,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       key={idx}
                       onClick={() => setCurrentImageIndex(idx)}
                       className={`w-2 h-2 rounded-full transition-colors ${
-                        idx === currentImageIndex ? 'bg-white' : 'bg-white/30'
+                        idx === currentImageIndex ? "bg-white" : "bg-white/30"
                       }`}
                     />
                   ))}
@@ -333,7 +360,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   <Calendar className="w-5 h-5 text-blue-300" />
                   <span>Completed: {project.completion}</span>
                 </div>
-                
+
                 <div className="flex items-center gap-2">
                   <Code className="w-5 h-5 text-blue-300" />
                   <div className="flex flex-wrap gap-2">
@@ -367,30 +394,30 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
   );
 };
 
-
 export const PortfolioPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  
+
   const projects = [
     {
-      title: 'Garget Shop Web Application',
-      url: 'https://thegadgetshopsa.co.za/',
-      image: '/gad.png',
-      logo: "/gad-logo.png", 
-      completion: '2023',
+      title: "Garget Shop Web Application",
+      url: "https://thegadgetshopsa.co.za/",
+      image: "/gad.png",
+      logo: "/gad-logo.png",
       description: "An E-Commerce website for Gadgets",
       technologies: ["React", "Django", "PostgreSQL", "AWS"],
-      additionalImages: ["/gad.png", "/gad.png"]
+      completion: "2023",
+      additionalImages: ["/gad.png", "/gad.png"],
     },
     {
       title: "ACMF Website",
       url: "https://acmforum.org",
       image: "/acmf.png",
-      logo: "/ACMF.svg", 
-      description: "A comprehensive forum platform for African Capital Markets, facilitating discussions and knowledge sharing across the continent's Carbon Markets.",
+      logo: "/ACMF.svg",
+      description:
+        "A comprehensive forum platform for African Capital Markets, facilitating discussions and knowledge sharing across the continent's Carbon Markets.",
       technologies: ["React", "Node.js", "MongoDB", "AWS"],
       completion: "2023",
-      additionalImages: ["/acmf.png", "/acmf.png"]
+      additionalImages: ["/acmf.png", "/acmf.png"],
     },
     {
       title: "Silver Carbon Website",
@@ -400,28 +427,28 @@ export const PortfolioPage = () => {
       description: "Environmental sustainability platform",
       technologies: ["Vue.js", "Django", "PostgreSQL"],
       completion: "2023",
-      additionalImages: ["/silver1.png", "/silver1.png"]
-      },
-      {
-          title: "Mt Zion College Website",
-          url: "/https://mtzioncollege-1.onrender.com",
-        image: "/mtzion.png",
-        logo: "/mtzion1.png",
-          description: "Mt Zion College Website",
-          technologies: ["React", "Express", "MySQL"],
-        completion: "2024",
-        additionalImages: ["/mtzion.png", "/mtzion.png", "/c1.png","/c2.png"]
-      },
-      {
-          title: "Content Creation Association of Zimbabwe",
-          url: "/https://cocaz.onrender.com",
-        image: "/COCAZ.png",
-        logo: "/cocaz3.jpg",
-          description: "Content Creation Association of Zimbabwe Website",
-          technologies: ["React", "Express", "MySQL"],
-        completion: "2024",
-        additionalImages: ["/cocaz3.jpg", "/cocaz3.jpg"]
-        },
+      additionalImages: ["/silver1.png", "/silver1.png"],
+    },
+    {
+      title: "Mt Zion College Website",
+      url: "/https://mtzioncollege-1.onrender.com",
+      image: "/mtzion.png",
+      logo: "/mtzion1.png",
+      description: "Mt Zion College Website",
+      technologies: ["React", "Express", "MySQL"],
+      completion: "2024",
+      additionalImages: ["/mtzion.png", "/mtzion.png", "/c1.png", "/c2.png"],
+    },
+    {
+      title: "Content Creation Association of Zimbabwe",
+      url: "/https://cocaz.onrender.com",
+      image: "/COCAZ.png",
+      logo: "/cocaz3.jpg",
+      description: "Content Creation Association of Zimbabwe Website",
+      technologies: ["React", "Express", "MySQL"],
+      completion: "2024",
+      additionalImages: ["/cocaz3.jpg", "/cocaz3.jpg"],
+    },
     {
       title: "Ministry of Environment and Wildlife & ACMF Portal",
       url: "/https://avccmf-frontend.onrender.com/",
@@ -430,7 +457,7 @@ export const PortfolioPage = () => {
       description: "Event management and ticketing system",
       technologies: ["React", "Express", "MySQL"],
       completion: "2024",
-      additionalImages: ["/mini1.png", "/mini2.png"]
+      additionalImages: ["/mini1.png", "/mini2.png"],
     },
     {
       title: "Zettabyte Website",
@@ -440,8 +467,8 @@ export const PortfolioPage = () => {
       description: "A comprehensive forum platform for a Software Company",
       technologies: ["Next.js", "Node.js", "MongoDB"],
       completion: "2024",
-      additionalImages: ["/zettabyte.png", "/zetta.png"]
-    }
+      additionalImages: ["/zettabyte.png", "/zetta.png"],
+    },
   ];
 
   return (
@@ -466,16 +493,17 @@ export const PortfolioPage = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-                              <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
-        >
-          Our Track Record
-        </motion.h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
+            >
+              Our Track Record
+            </motion.h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Explore our successful projects and see how we've helped businesses transform their digital presence.
+              Explore our successful projects and see how we've helped
+              businesses transform their digital presence.
             </p>
           </motion.div>
 
@@ -499,7 +527,7 @@ export const PortfolioPage = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
-                  
+
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-4">
                       <img
@@ -509,9 +537,11 @@ export const PortfolioPage = () => {
                       />
                       <h3 className="text-xl font-semibold">{project.title}</h3>
                     </div>
-                    
-                    <p className="text-blue-100 mb-4 line-clamp-2">{project.description}</p>
-                    
+
+                    <p className="text-blue-100 mb-4 line-clamp-2">
+                      {project.description}
+                    </p>
+
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.slice(0, 3).map((tech, idx) => (
                         <span
@@ -558,4 +588,4 @@ export const PortfolioPage = () => {
   );
 };
 
-export default PortfolioSection
+export default PortfolioSection;
