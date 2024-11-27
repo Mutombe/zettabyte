@@ -24,7 +24,7 @@ const ProjectModal1 = ({ project, isOpen, onClose }) => {
             onClick={onClose}
             className="absolute right-4 top-4 p-1 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
-            <X className="w-6 h-6" />
+      
           </button>
 
           <div className="space-y-6">
@@ -175,6 +175,10 @@ const PortfolioCard = ({ title, url, image, index, onClick }) => {
 const PortfolioSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
+  const openInNewTab = (url) => {
+    window.open(url, '_blank');
+  };
+
   const projects = [
     {
       title: "Garget Shop Web Application",
@@ -202,7 +206,7 @@ const PortfolioSection = () => {
     },
     {
       title: "Content Creation Association of Zimbabwe",
-      url: "https://cocaz.onrender.com/",
+      url: "https://cocaz.org.zw/",
       image: "/COCAZ.png",
       completion: "2024",
     },
@@ -288,7 +292,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             onClick={onClose}
             className="fixed right-4 top-4 z-50 p-1 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
           >
-            <X className="w-6 h-6" />
+       
           </button>
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-6">
@@ -378,13 +382,14 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
               <div className="pt-4">
                 <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-colors"
-                >
-                  Visit Project <ExternalLink className="w-4 h-4" />
-                </a>
+        href={project.url.startsWith("https://") ? project.url : `https://${project.url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-colors"
+        onClick={() => openInNewTab(project.url)}
+      >
+        Visit Site <ExternalLink className="w-4 h-4" />
+      </a>
               </div>
             </div>
           </div>
@@ -400,7 +405,7 @@ export const PortfolioPage = () => {
   const projects = [
     {
       title: "Garget Shop Web Application",
-      url: "https://thegadgetshopsa.co.za/",
+      url: "thegadgetshopsa.co.za/",
       image: "/gad.png",
       logo: "/gad-logo.png",
       description: "An E-Commerce website for Gadgets",
@@ -410,7 +415,7 @@ export const PortfolioPage = () => {
     },
     {
       title: "ACMF Website",
-      url: "https://acmforum.org",
+      url: "acmforum.org",
       image: "/acmf.png",
       logo: "/ACMF.svg",
       description:
@@ -421,7 +426,7 @@ export const PortfolioPage = () => {
     },
     {
       title: "Silver Carbon Website",
-      url: "https://silver-carbon.co.zw",
+      url: "silver-carbon.co.zw",
       image: "/silver1.png",
       logo: "/silver-logo.svg",
       description: "Environmental sustainability platform",
@@ -431,7 +436,7 @@ export const PortfolioPage = () => {
     },
     {
       title: "Mt Zion College Website",
-      url: "/https://mtzioncollege-1.onrender.com",
+      url: "mtzioncollege-1.onrender.com",
       image: "/mtzion.png",
       logo: "/mtzion1.png",
       description: "Mt Zion College Website",
@@ -441,7 +446,7 @@ export const PortfolioPage = () => {
     },
     {
       title: "Content Creation Association of Zimbabwe",
-      url: "/https://cocaz.onrender.com",
+      url: "cocaz.org.zw",
       image: "/COCAZ.png",
       logo: "/cocaz3.jpg",
       description: "Content Creation Association of Zimbabwe Website",
@@ -451,7 +456,7 @@ export const PortfolioPage = () => {
     },
     {
       title: "Ministry of Environment and Wildlife & ACMF Portal",
-      url: "/https://avccmf-frontend.onrender.com/",
+      url: "avccmf-frontend.onrender.com/",
       image: "/mini1.png",
       logo: "/AVCCMFLogo.png",
       description: "Event management and ticketing system",
@@ -461,7 +466,7 @@ export const PortfolioPage = () => {
     },
     {
       title: "Zettabyte Website",
-      url: "https://zettabyte.co.zw",
+      url: "zettabyte.co.zw",
       image: "/zetta.png",
       logo: "/zet.png",
       description: "A comprehensive forum platform for a Software Company",
