@@ -181,6 +181,18 @@ const PortfolioSection = () => {
 
   const projects = [
     {
+      title: "Wonderland Panelbeaters",
+      url: "https://wenderland.onrender.com/",
+      image: "/wonder.png",
+      completion: "In Progress",
+    },
+    {
+      title: "Organic Landscaping",
+      url: "https://organic-landscaping.onrender.com",
+      image: "/organic.png",
+      completion: "In Progress",
+    },
+    {
       title: "Garget Shop Web Application",
       url: "https://thegadgetshopsa.co.za/",
       image: "/gad.png",
@@ -403,6 +415,26 @@ export const PortfolioPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
+    {
+      title: "Wonderland Panelbeaters",
+      url: "wenderland.onrender.com/",
+      image: "/wonder.png",
+      logo: "/wpb.png",
+      description: "An E-Commerce website for Gadgets",
+      technologies: ["React", "Django", "PostgreSQL", "AWS"],
+      completion: "2023",
+      additionalImages: ["/wonder.png", "/wonder.png"],
+    },
+    {
+      title: "Organic Landscaping",
+      url: "organic-landscaping.onrender.com",
+      image: "/organic.png",
+      logo: "/logol2.png",
+      description: "An E-Commerce website for Gadgets",
+      technologies: ["React", "Django", "PostgreSQL", "AWS"],
+      completion: "2023",
+      additionalImages: ["/organic.png", "/organic.png"],
+    },
     {
       title: "Garget Shop Web Application",
       url: "thegadgetshopsa.co.za/",
