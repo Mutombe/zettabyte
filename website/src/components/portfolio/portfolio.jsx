@@ -438,7 +438,7 @@ export const PortfolioPage = () => {
       title: "House of Stone",
       url: "houseofstone.onrender.com/",
       image: "/hos.png",
-      logo: "/hs3.png",
+      logo: "/hs2.png",
       description: "A website for the Wodnerland Panelbeaters team",
       technologies: ["React", "Django", "PostgreSQL", "AWS"],
       completion: "2024",
