@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Facebook, href: "https://facebook.com/zettabyte" },
-    { icon: Twitter, href: "https://twitter.com/zettabyte" },
-    { icon: Linkedin, href: "https://linkedin.com/company/zettabyte" }
+    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61569849265472" },
+    { icon: Instagram, href: "https://www.instagram.com/zzettabyte/" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/zzettabyte/" }
   ];
 
   return (
