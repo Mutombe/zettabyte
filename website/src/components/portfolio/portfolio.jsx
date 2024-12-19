@@ -180,6 +180,25 @@ const PortfolioSection = () => {
   };
 
   const projects = [
+  
+    {
+      title: "House of Stone",
+      url: "https://houseofstone.onrender.com/",
+      image: "/hos.png",
+      completion: "2024",
+    },
+    {
+      title: "Organic Honey",
+      url: "https://organichoney.co.zw/",
+      image: "/oh.png",
+      completion: "2024",
+    },
+    {
+      title: "Alshari Car Rental",
+      url: "https://alshari.onrender.com/",
+      image: "/cr.png",
+      completion: "2024",
+    },
     {
       title: "Wonderland Panelbeaters",
       url: "https://wenderland.onrender.com/",
@@ -416,13 +435,43 @@ export const PortfolioPage = () => {
 
   const projects = [
     {
+      title: "House of Stone",
+      url: "houseofstone.onrender.com/",
+      image: "/hos.png",
+      logo: "/hs3.png",
+      description: "A website for the Wodnerland Panelbeaters team",
+      technologies: ["React", "Django", "PostgreSQL", "AWS"],
+      completion: "2024",
+      additionalImages: ["/hos.png", "/hos.png"],
+    },
+    {
+      title: "Organic Honey",
+      url: "organichoney.co.zw/",
+      image: "/oh.png",
+      logo: "/ohl.png",
+      description: "A website for the Organic Honey Farm",
+      technologies: ["React", "Django", "PostgreSQL", "AWS"],
+      completion: "2024",
+      additionalImages: ["/oh.png", "/oh.png"],
+    },
+    {
+      title: "Alshari Car Rental",
+      url: "alshari.onrender.com/",
+      image: "/cr.png",
+      logo: "/crlogo.png",
+      description: "A website for the Alshari Car Rental team",
+      technologies: ["React", "Django", "PostgreSQL", "AWS"],
+      completion: "2024",
+      additionalImages: ["/cr.png", "/cr.png"],
+    },
+    {
       title: "Wonderland Panelbeaters",
       url: "wenderland.onrender.com/",
       image: "/wonder.png",
       logo: "/wpb.png",
-      description: "An E-Commerce website for Gadgets",
+      description: "A website for the Wodnerland Panelbeaters team",
       technologies: ["React", "Django", "PostgreSQL", "AWS"],
-      completion: "2023",
+      completion: "2024",
       additionalImages: ["/wonder.png", "/wonder.png"],
     },
     {
@@ -430,7 +479,7 @@ export const PortfolioPage = () => {
       url: "organic-landscaping.onrender.com",
       image: "/organic.png",
       logo: "/logol2.png",
-      description: "An E-Commerce website for Gadgets",
+      description: "A website for Organic Landscaping Company",
       technologies: ["React", "Django", "PostgreSQL", "AWS"],
       completion: "2023",
       additionalImages: ["/organic.png", "/organic.png"],
