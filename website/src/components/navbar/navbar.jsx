@@ -12,7 +12,7 @@ const Logo = () => {
         <img 
           src="/zet.png" 
           alt="Zettabyte Logo" 
-          className="relative h-10 w-full bg-white rounded-lg transform group-hover:scale-105 transition duration-200"
+          className="relative h-10 w-10 bg-white rounded-lg transform group-hover:scale-105 transition duration-200"
         />
       </div>
       <span className="text-xl font-bold sm:block bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
